@@ -1,0 +1,5 @@
+---
+# Master role dependencies
+dependencies:
+  - role: pip
+

@@ -1,0 +1,48 @@
+---
+#Setup docker
+
+- name: Add docker repo
+  apt_repository:
+      repo: "{{ docker_repo }}"
+      state: present
+
+- name: Add docker repo key
+  apt_key:
+      keyserver: "{{ docker_repo_keyserver }}"
+      id: "{{ docker_repo_key }}"
+
+- name: Install docker
+  apt:
+      name: docker-engine
+      state: latest
+      force: yes
+  notify: Restart docker
+
+- name: Create docker settings directory
+  file:
+    path: "{{ docker_sysctl_path }}"
+    state: directory
+
+- name: Set docker defaults
+  template:
+    src: "docker_defaults"
+    dest: "{{ docker_sysctl_path }}/001-default-network.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install docker-py
+  pip:
+      name: docker-py
+      state: latest
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
+    state: latest
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

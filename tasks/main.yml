@@ -1,0 +1,4 @@
+---
+#Docker tasks
+
+- include: docker.yml
