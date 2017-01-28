@@ -27,7 +27,8 @@
 - name: Install docker-compose
   pip:
     name: docker-compose
-    state: latest
+    state: present
+    version: 1.9.0
 
 - name: Start docker
   service:
