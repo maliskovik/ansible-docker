@@ -19,19 +19,6 @@
       force: yes
   notify: Restart docker
 
-- name: Create docker settings directory
-  file:
-    path: "{{ docker_sysctl_path }}"
-    state: directory
-
-- name: Set docker defaults
-  template:
-    src: "docker_defaults"
-    dest: "{{ docker_sysctl_path }}/001-default-network.conf"
-    owner: root
-    group: root
-    mode: 0644
-
 - name: Install docker-py
   pip:
       name: docker-py
