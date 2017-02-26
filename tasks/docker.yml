@@ -19,11 +19,6 @@
       force: yes
   notify: Restart docker
 
-- name: Install docker-py
-  pip:
-      name: docker-py
-      state: latest
-
 - name: Install docker-compose
   pip:
     name: docker-compose
