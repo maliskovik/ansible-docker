@@ -25,6 +25,12 @@
     state: present
     version: 1.9.0
 
+- name: Create fig alias
+  file:
+    state: link
+    src: "/usr/local/bin/docker-compose"
+    path: "/usr/local/bin/fig"
+
 - name: Start docker
   service:
     name: docker
