@@ -1,20 +1,28 @@
 ---
 #Setup docker
 
+- name: Install docker requirements
+  apt:
+      name: "{{ item }}"
+      state: latest
+      force: yes
+  notify: Restart docker
+  with_items: "{{ docker_dependencies }}"
+
+- name: Add docker repo key
+  apt_key:
+      url: "{{ docker_repo_keyserver }}"
+      state: present
+
 - name: Add docker repo
   apt_repository:
       repo: "{{ docker_repo }}"
       state: present
       mode: 0644
 
-- name: Add docker repo key
-  apt_key:
-      keyserver: "{{ docker_repo_keyserver }}"
-      id: "{{ docker_repo_key }}"
-
 - name: Install docker
   apt:
-      name: docker-engine
+      name: docker-ce
       state: latest
       force: yes
   notify: Restart docker
