@@ -1,0 +1,9 @@
+docker_dependencies_arch:
+  - docker
+  - docker-compose
+
+docker_dependencies_ubuntu:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common

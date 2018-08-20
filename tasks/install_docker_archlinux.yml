@@ -1,0 +1,22 @@
+---
+#Setup docker
+
+- name: Install docker - arch
+  pacman:
+      name: "{{ item }}"
+      state: latest
+      force: yes
+  notify: Restart docker
+  with_items: "{{ docker_dependencies_arch }}"
+
+- name: Create fig alias
+  file:
+    state: link
+    src: "/usr/bin/docker-compose"
+    path: "/usr/bin/fig"
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
