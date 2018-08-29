@@ -31,7 +31,6 @@
   pip:
     name: docker-compose
     state: present
-    version: 1.9.0
 
 - name: Create fig alias
   file:
