@@ -3,11 +3,10 @@
 
 - name: Install docker requirements
   apt:
-      name: "{{ item }}"
+      name: "{{ docker_dependencies_ubuntu|default(omit) }}"
       state: latest
       force: yes
   notify: Restart docker
-  with_items: "{{ docker_dependencies_ubuntu }}"
 
 - name: Add docker repo key
   apt_key:

@@ -3,11 +3,10 @@
 
 - name: Install docker - arch
   pacman:
-      name: "{{ item }}"
+      name: "{{ docker_dependencies_arch|default(omit) }}"
       state: latest
       force: yes
   notify: Restart docker
-  with_items: "{{ docker_dependencies_arch }}"
 
 - name: Create fig alias
   file:
