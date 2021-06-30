@@ -30,6 +30,7 @@
   pip:
     name: docker-compose
     state: present
+    executable: pip3
 
 - name: Create fig alias
   file:
