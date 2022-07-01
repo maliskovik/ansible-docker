@@ -29,7 +29,7 @@
 - name: Install docker-compose
   pip:
     name: docker-compose
-    state: present
+    state: latest
     executable: pip3
 
 - name: Create fig alias
