@@ -27,15 +27,14 @@
   notify: Restart docker
 
 - name: Install docker-compose
-  pip:
+  apt:
     name: docker-compose
     state: latest
-    executable: pip3
 
 - name: Create fig alias
   file:
     state: link
-    src: "/usr/local/bin/docker-compose"
+    src: "/usr/bin/docker-compose"
     path: "/usr/local/bin/fig"
 
 - name: Start docker
