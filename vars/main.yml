@@ -7,3 +7,13 @@ docker_dependencies_ubuntu:
   - ca-certificates
   - curl
   - software-properties-common
+
+docker_dependencies_rhel:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin 
+  - docker-compose-plugin
+
+docker_repo_rhel: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/$releasever/$basearch/stable"
+docker_repo_key_rhel: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"

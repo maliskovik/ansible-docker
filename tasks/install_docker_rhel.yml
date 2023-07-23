@@ -1,0 +1,43 @@
+---
+#Setup docker
+
+- name: Add signing key
+  ansible.builtin.rpm_key:
+    key: "{{ docker_repo_key_rhel }}"
+    state: present
+
+- name: Add repository
+  yum_repository:
+    name: docker-ce
+    description: Docker repo
+    baseurl: "{{ docker_repo_rhel }}"
+    enabled: true
+    gpgcheck: true
+    gpgkey: "{{ docker_repo_key_rhel }}"
+
+- name: Install docker - Rhel
+  yum:
+      name: "{{ docker_dependencies_rhel|default(omit) }}"
+      state: latest
+  notify: Restart docker
+
+- name: Create fig alias
+  file:
+    state: link
+    src: "/usr/bin/docker-compose"
+    path: "/usr/bin/fig"
+
+- name: Configure docker
+  template:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: 0644
+    owner: root
+    group: root
+  notify: Restart docker
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
