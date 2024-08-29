@@ -1,11 +1,6 @@
 ---
 #Setup docker
 
-- name: Add signing key
-  ansible.builtin.rpm_key:
-    key: "{{ docker_repo_key_rhel }}"
-    state: present
-
 - name: Add repository
   yum_repository:
     name: docker-ce
@@ -13,10 +8,9 @@
     baseurl: "{{ docker_repo_rhel }}"
     enabled: true
     gpgcheck: true
-    gpgkey: "{{ docker_repo_key_rhel }}"
 
 - name: Install docker - Rhel
-  yum:
+  dnf:
       name: "{{ docker_dependencies_rhel|default(omit) }}"
       state: latest
   notify: Restart docker

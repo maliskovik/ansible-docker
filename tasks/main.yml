@@ -1,9 +1,9 @@
 ---
 #Docker tasks
 
-- include: install_docker_ubuntu.yml
+- ansible.builtin.include_tasks: install_docker_ubuntu.yml
   when: ansible_os_family == "Debian"
-- include: install_docker_archlinux.yml
+- ansible.builtin.include_tasks: install_docker_archlinux.yml
   when: ansible_os_family == "Archlinux"
-- include: install_docker_rhel.yml
+- ansible.builtin.include_tasks: install_docker_rhel.yml
   when: ansible_os_family == "RedHat"
