@@ -14,4 +14,4 @@ docker_dependencies_rhel:
   - containerd.io 
   - docker-compose-plugin
 
-docker_repo_rhel: " https://download.docker.com/linux/centos/docker-ce.repo"
+docker_repo_rhel: "https://download.docker.com/linux/rhel/docker-ce.repo"
