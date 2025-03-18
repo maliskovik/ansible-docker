@@ -1,25 +1,30 @@
 ---
 #Setup docker
 
-- name: Add repository
+- name: Add repository - Centos
   yum_repository:
     name: docker-ce
     description: Docker repo
     baseurl: "{{ docker_repo_rhel }}"
     enabled: true
     gpgcheck: true
+  when: ansible_distribution == "CentOS"
+
+- name: Add repository - Rocky
+  template:
+    src: docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: 0644
+    owner: root
+    group: root
+  when:
+    - ansible_distribution == "Rocky"
 
 - name: Install docker - Rhel
   dnf:
-      name: "{{ docker_dependencies_rhel|default(omit) }}"
-      state: latest
+    name: "{{ docker_dependencies_rhel|default(omit) }}"
+    state: latest
   notify: Restart docker
-
-- name: Create fig alias
-  file:
-    state: link
-    src: "/usr/bin/docker-compose"
-    path: "/usr/bin/fig"
 
 - name: Configure docker
   template:

@@ -9,9 +9,9 @@ docker_dependencies_ubuntu:
   - software-properties-common
 
 docker_dependencies_rhel:
-  - docker-ce 
-  - docker-ce-cli 
-  - containerd.io 
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
   - docker-compose-plugin
 
 docker_repo_rhel: "https://download.docker.com/linux/rhel/docker-ce.repo"
