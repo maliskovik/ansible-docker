@@ -2,8 +2,16 @@
 #Docker tasks
 
 - ansible.builtin.include_tasks: install_docker_ubuntu.yml
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_architecture == "x86_64"
+- ansible.builtin.include_tasks: install_docker_ubuntu_riscv.yml
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_architecture == "riscv64"
 - ansible.builtin.include_tasks: install_docker_archlinux.yml
   when: ansible_os_family == "Archlinux"
+- ansible.builtin.include_tasks: install_docker_rhel.yml
+  when: ansible_os_family == "RedHat"
 - ansible.builtin.include_tasks: install_docker_rhel.yml
   when: ansible_os_family == "RedHat"

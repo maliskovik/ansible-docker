@@ -1,0 +1,7 @@
+---
+- name: Install docker
+  apt:
+    name: "{{ docker_dependencies_ubuntu_riscv }}"
+    state: latest
+    force: yes
+  notify: Restart docker

@@ -15,3 +15,7 @@ docker_dependencies_rhel:
   - docker-compose-plugin
 
 docker_repo_rhel: "https://download.docker.com/linux/rhel/docker-ce.repo"
+
+docker_dependencies_ubuntu_riscv:
+  - docker.io
+  - docker-compose-plugin

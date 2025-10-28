@@ -22,7 +22,7 @@
 
 - name: Install docker - Rhel
   dnf:
-    name: "{{ docker_dependencies_rhel|default(omit) }}"
+    name: "{{ docker_dependencies_rhel|default('') }}"
     state: latest
   notify: Restart docker
 
