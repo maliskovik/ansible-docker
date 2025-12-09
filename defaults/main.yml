@@ -1,8 +1,8 @@
-docker_repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts["lsb"].codename }} stable"
+docker_repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['lsb'].codename }} stable"
 docker_repo_key: "58118E89F3A912897C070ADBF76221572C52609D"
 docker_repo_keyserver: "https://download.docker.com/linux/ubuntu/gpg"
 docker_tls: false
-docker_sysctl_path: '/etc/systemd/system/docker.service.d'
+docker_sysctl_path: "/etc/systemd/system/docker.service.d"
 docker_dependencies:
   - apt-transport-https
   - ca-certificates
