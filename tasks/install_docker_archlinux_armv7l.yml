@@ -3,7 +3,7 @@
 
 - name: Install docker - arch
   pacman:
-    name: "{{ docker_dependencies_arch|default('') }}"
+    name: "{{ docker_dependencies_arch_arm|default('') }}"
     state: latest
     force: yes
   notify: Restart docker

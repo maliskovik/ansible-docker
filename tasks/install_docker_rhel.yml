@@ -8,7 +8,7 @@
     baseurl: "{{ docker_repo_rhel }}"
     enabled: true
     gpgcheck: true
-  when: ansible_distribution == "CentOS"
+  when: ansible_facts["distribution"] == "CentOS"
 
 - name: Add repository - Rocky
   template:
@@ -18,7 +18,7 @@
     owner: root
     group: root
   when:
-    - ansible_distribution == "Rocky"
+    - ansible_facts["distribution"] == "Rocky"
 
 - name: Install docker - Rhel
   dnf:

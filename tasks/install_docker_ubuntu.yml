@@ -26,17 +26,6 @@
     force: yes
   notify: Restart docker
 
-- name: Install docker-compose
-  apt:
-    name: docker-compose
-    state: latest
-
-- name: Create fig alias
-  file:
-    state: link
-    src: "/usr/bin/docker-compose"
-    path: "/usr/local/bin/fig"
-
 - name: Start docker
   service:
     name: docker
