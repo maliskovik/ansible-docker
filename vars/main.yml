@@ -23,3 +23,7 @@ docker_dependencies_ubuntu_riscv:
 docker_dependencies_arch_arm:
   - docker
   - docker-compose
+
+docker_dependencies_debian_aarch64:
+  - docker.io
+  - docker-compose-v2

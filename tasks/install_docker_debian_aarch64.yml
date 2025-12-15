@@ -1,0 +1,15 @@
+---
+#Setup docker
+
+- name: Install docker - aarch64
+  apt:
+    name: "{{ docker_dependencies_debian_aarch64|default('') }}"
+    state: latest
+    force: yes
+  notify: Restart docker
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
