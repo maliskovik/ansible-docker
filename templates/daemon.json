@@ -2,9 +2,8 @@
     "default-address-pools": [
         {
             "base": "172.16.0.0/16",
-            "size": 26
+            "size": {{ docker_network_size }}
         }
     ],
     "bip": "172.17.0.1/16"
 }
-    
